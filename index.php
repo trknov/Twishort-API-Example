@@ -11,10 +11,8 @@ $x_auth_service_provider = 'https://api.twitter.com/1.1/account/verify_credentia
 $twishort_post_url = 'http://api.twishort.local/1.1/post.json';
 // End settings
 
-// Params
+
 $text = 'text to post';
-$reply_to_twitter_id = '';
-// End params
 
 
 // Let's start
