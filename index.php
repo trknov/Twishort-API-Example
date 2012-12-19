@@ -8,7 +8,7 @@ $twitter_auth = array(
 $twishort_key = 'your Twishort API key'; // get your API key at http://twishort.com/page/api
 
 $x_auth_service_provider = 'https://api.twitter.com/1.1/account/verify_credentials.json';
-$twishort_post_url = 'http://api.twishort.local/1.1/post.json';
+$twishort_post_url = 'http://api.twishort.com/1.1/post.json';
 // End settings
 
 
