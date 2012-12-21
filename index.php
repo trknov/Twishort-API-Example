@@ -92,6 +92,4 @@ $code = $tmhOAuth->request('POST', $twishort_update_ids_url, $params, false);
 if($code != 200) { // error
   print_r($tmhOAuth);
   die();
-} 
-
-$updated_post = json_decode($tmhOAuth->response['response'], 1);
+}
