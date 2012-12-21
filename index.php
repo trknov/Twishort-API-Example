@@ -9,6 +9,7 @@ $twishort_key = 'your Twishort API key'; // get your API key at http://twishort.
 
 $x_auth_service_provider = 'https://api.twitter.com/1.1/account/verify_credentials.json';
 $twishort_post_url = 'http://api.twishort.com/1.1/post.json';
+$twishort_update_ids_url = 'http://api.twishort.com/1.1/update_ids.json';
 // End settings
 
 
@@ -65,3 +66,32 @@ $post = Array
         )
 )
 */
+
+
+// OPTIONAL BUT RECOMMENDED PART
+// Here you posting text from $post['text_to_tweet'] to Twitter yourself and saving response to $tweet 
+// Twitter will return to you result set that will include next parameters:
+$tweet = array(
+  'id_str' => '1111111111',
+  'in_reply_to_status_id_str' => '',
+  'in_reply_to_user_id_str' => '',
+
+);
+
+// Now send these Twitter ids back to Twishort
+$params = array(
+  'api_key' => $twishort_key,  
+  'id' => $post['id'],
+  'tweet_id' => $tweet['id_str'],
+  'reply_to_tweet_id' => $tweet['in_reply_to_status_id_str'], // optional
+  'reply_to_user_id' => $tweet['in_reply_to_user_id_str'], //optional
+);  
+// make the request, no auth, custom headers
+$code = $tmhOAuth->request('POST', $twishort_update_ids_url, $params, false);
+
+if($code != 200) { // error
+  print_r($tmhOAuth);
+  die();
+} 
+
+$updated_post = json_decode($tmhOAuth->response['response'], 1);
