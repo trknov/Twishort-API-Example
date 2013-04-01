@@ -43,7 +43,7 @@ $params = array(
 $code = $tmhOAuth->request('POST', $twishort_post_url, $params, false);
 
 if($code != 200) { // error
-  print_r($tmhOAuth);
+  print_r($tmhOAuth->response['response']);
   die();
 } 
 
@@ -90,6 +90,6 @@ $params = array(
 $code = $tmhOAuth->request('POST', $twishort_update_ids_url, $params, false);
 
 if($code != 200) { // error
-  print_r($tmhOAuth);
+  print_r($tmhOAuth->response['response']);
   die();
 }
