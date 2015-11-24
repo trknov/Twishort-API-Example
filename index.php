@@ -15,8 +15,6 @@ $twishort_update_ids_url = 'http://api.twishort.com/1.1/update_ids.json';
 
 $text = 'text to post';
 
-
-// Let's start
 require('tmhOAuth.php'); // we are using tmhOAuth library in this example
 $tmhOAuth = new tmhOAuth($twitter_auth);
 
