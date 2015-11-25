@@ -1,3 +1,8 @@
+/*
+ * This example demonstrates a very simple use of the Twishort API
+ * More about Twishort API: http://twishort.com/page/api
+ */
+
 // Settings
 $twitter_auth = array(
   'consumer_key'    => 'consumer_key of your Twitter app',
@@ -41,15 +46,14 @@ $params = array(
 $code = $tmhOAuth->request('POST', $twishort_post_url, $params, false);
 
 if($code != 200) { // error
-  print_r($tmhOAuth->response['response']);
-  die();
-} 
+  echo $tmhOAuth->response['response'];
+  exit();
+}
 
+// success
 $post = json_decode($tmhOAuth->response['response'], 1);
-
 print_r($post);
-
-/*
+/* 
 $post = Array
 (
     [id] => cbbbc
@@ -65,17 +69,10 @@ $post = Array
 )
 */
 
-
-// OPTIONAL BUT RECOMMENDED PART
-// Here you posting text from $post['text_to_tweet'] to Twitter yourself and saving response to $tweet 
-// Twitter will return to you result set that will include next parameters:
-$tweet = array(
-  'id_str' => '1111111111',
-  'in_reply_to_status_id_str' => '',
-  'in_reply_to_user_id_str' => '',
-
-);
-
+// OPTIONAL BUT HIGHLY RECOMMENDED PART
+// Here you posting text from $post['text_to_tweet'] to Twitter by yourself
+// Twitter will return to you result set that will among others include fields 'id_str', 'in_reply_to_status_id_str' and 'in_reply_to_user_id_str'.
+// Let's say you save response from Twitter to $tweet variable
 // Now send these Twitter ids back to Twishort
 $params = array(
   'api_key' => $twishort_key,  
@@ -87,7 +84,4 @@ $params = array(
 // make the request, no auth, custom headers
 $code = $tmhOAuth->request('POST', $twishort_update_ids_url, $params, false);
 
-if($code != 200) { // error
-  print_r($tmhOAuth->response['response']);
-  die();
-}
+// Done, thank you for using Twishort API =)
