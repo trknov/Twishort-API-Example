@@ -1,6 +1,6 @@
 /*
  * This PHP example demonstrates a very simple use of the Twishort API
- * More about Twishort API: http://twishort.com/api
+ * More about Twishort API: https://twishort.com/api
  */
 
 // Settings
