@@ -1,5 +1,5 @@
 /*
- * This example demonstrates a very simple use of the Twishort API
+ * This PHP example demonstrates a very simple use of the Twishort API
  * More about Twishort API: http://twishort.com/page/api
  */
 
@@ -20,7 +20,7 @@ $twishort_update_ids_url = 'http://api.twishort.com/1.1/update_ids.json';
 
 $text = 'text to post';
 
-require('tmhOAuth.php'); // we are using tmhOAuth library in this example
+require('tmhOAuth.php'); // we use tmhOAuth library in this example (https://github.com/themattharris/tmhOAuth)
 $tmhOAuth = new tmhOAuth($twitter_auth);
 
 // generate the verify crendentials header -- BUT DON'T SEND
