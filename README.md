@@ -4,4 +4,4 @@
 
 This PHP example demonstrates a very simple use of the Twishort API.
 
-Twishort API Documentation https://twishort.com/api
+[Twishort API Documentation](https://twishort.com/api)
