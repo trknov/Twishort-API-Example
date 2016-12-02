@@ -17,8 +17,8 @@ $twishort_post_url = 'http://api.twishort.com/1.1/post.json';
 $twishort_update_ids_url = 'http://api.twishort.com/1.1/update_ids.json';
 // End settings
 
-
-$text = 'text to post';
+$title = 'post title';
+$text = 'post text';
 
 require('tmhOAuth.php'); // we use tmhOAuth library in this example (https://github.com/themattharris/tmhOAuth)
 $tmhOAuth = new tmhOAuth($twitter_auth);
@@ -40,6 +40,7 @@ $tmhOAuth->headers = array(
 $params = array(
   'api_key' => $twishort_key,
   'text' => $text,
+  'title' => $title, // optional  
 );  
 
 // make the request, no auth, custom headers
@@ -79,7 +80,8 @@ $params = array(
   'id' => $post['id'],
   'tweet_id' => $tweet['id_str'],
   'reply_to_tweet_id' => $tweet['in_reply_to_status_id_str'], // optional
-  'reply_to_user_id' => $tweet['in_reply_to_user_id_str'], //optional
+  'reply_to_user_id' => $tweet['in_reply_to_user_id_str'], // optional
+  'media' => $tweet['entities']['media'], // optional
 );  
 // make the request, no auth, custom headers
 $code = $tmhOAuth->request('POST', $twishort_update_ids_url, $params, false);
