@@ -3,14 +3,14 @@
  * More about Twishort API: https://twishort.com/api
  */
 
-// Settings
+// Twitter Auth tokens. Get yours at https://developer.twitter.com/apps
 $twitter_auth = array(
   'consumer_key'    => 'consumer_key of your Twitter app',
   'consumer_secret' => 'consumer_secret of your Twitter app',
-  'token'      => 'user_token',
-  'secret'     => 'user_secret',
-  // 'user_token'      => 'user_token', // before tmhOAuth v0.8.4
-  // 'user_secret'     => 'user_secret', // before tmhOAuth v0.8.4
+  'token'      => 'user_token of authenticated user',
+  'secret'     => 'user_secret of authenticated user',
+  // 'user_token'      => '', // before tmhOAuth v0.8.4
+  // 'user_secret'     => '', // before tmhOAuth v0.8.4
 );
 $twishort_key = 'your Twishort API key'; // get your API key at http://twishort.com/api
 
@@ -28,11 +28,11 @@ $tmhOAuth = new tmhOAuth($twitter_auth);
 // generate the verify crendentials header -- BUT DON'T SEND
 // we prevent the request because we're not the ones sending the verify_credentials request, the delegator is
 
-// $tmhOAuth->config['prevent_request'] = true; // before tmhOAuth v.0.8.4
+// $tmhOAuth->config['prevent_request'] = true; // before tmhOAuth v0.8.4
 $tmhOAuth->config['block'] = true;
 $tmhOAuth->request('GET', $x_auth_service_provider);
 $tmhOAuth->config['block'] = false;
-// $tmhOAuth->config['prevent_request'] = false; // before tmhOAuth v.0.8.4
+// $tmhOAuth->config['prevent_request'] = false; // before tmhOAuth v0.8.4
 
 // create the headers for the echo
 $tmhOAuth->headers = array(
