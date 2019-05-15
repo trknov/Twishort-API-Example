@@ -7,14 +7,16 @@
 $twitter_auth = array(
   'consumer_key'    => 'consumer_key of your Twitter app',
   'consumer_secret' => 'consumer_secret of your Twitter app',
-  'user_token'      => 'user_token',
-  'user_secret'     => 'user_secret',
+  'token'      => 'user_token',
+  'secret'     => 'user_secret',
+  // 'user_token'      => 'user_token', // before tmhOAuth v0.8.4
+  // 'user_secret'     => 'user_secret', // before tmhOAuth v0.8.4
 );
 $twishort_key = 'your Twishort API key'; // get your API key at http://twishort.com/api
 
 $x_auth_service_provider = 'https://api.twitter.com/1.1/account/verify_credentials.json';
-$twishort_post_url = 'http://api.twishort.com/1.1/post.json';
-$twishort_update_ids_url = 'http://api.twishort.com/1.1/update_ids.json';
+$twishort_post_url = 'https://api.twishort.com/1.1/post.json';
+$twishort_update_ids_url = 'https://api.twishort.com/1.1/update_ids.json';
 // End settings
 
 $title = 'post title';
@@ -26,9 +28,11 @@ $tmhOAuth = new tmhOAuth($twitter_auth);
 // generate the verify crendentials header -- BUT DON'T SEND
 // we prevent the request because we're not the ones sending the verify_credentials request, the delegator is
 
-$tmhOAuth->config['prevent_request'] = true;
+// $tmhOAuth->config['prevent_request'] = true; // before tmhOAuth v.0.8.4
+$tmhOAuth->config['block'] = true;
 $tmhOAuth->request('GET', $x_auth_service_provider);
-$tmhOAuth->config['prevent_request'] = false;
+$tmhOAuth->config['block'] = false;
+// $tmhOAuth->config['prevent_request'] = false; // before tmhOAuth v.0.8.4
 
 // create the headers for the echo
 $tmhOAuth->headers = array(
@@ -44,10 +48,12 @@ $params = array(
 );  
 
 // make the request, no auth, custom headers
-$code = $tmhOAuth->request('POST', $twishort_post_url, $params, false);
+$code = $tmhOAuth->request('POST', $twishort_post_url, $params, false, true);
 
 if($code != 200) { // error
-  echo $tmhOAuth->response['response'];
+  echo 'ERROR! ';
+  print_r($tmhOAuth->response['error']);
+  print_r($tmhOAuth->response['response']);
   exit();
 }
 
@@ -84,6 +90,6 @@ $params = array(
   'media' => $tweet['entities']['media'], // optional
 );  
 // make the request, no auth, custom headers
-$code = $tmhOAuth->request('POST', $twishort_update_ids_url, $params, false);
+$code = $tmhOAuth->request('POST', $twishort_update_ids_url, $params, false, true);
 
 // Done, thank you for using Twishort API =)
