@@ -10,7 +10,7 @@ $twitter_auth = array(
   'user_token'      => 'user_token of authenticated user',
   'user_secret'     => 'user_secret of authenticated user'
 );
-$twishort_key = 'your Twishort API key'; // get your API key at http://twishort.com/api
+$twishort_api_key = 'your Twishort API key'; // get your API key at http://twishort.com/api
 
 $twitter_verify_creds_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
 $twishort_post_url = 'https://api.twishort.com/1.1/post.json';
@@ -38,7 +38,7 @@ $tmhOAuth->headers = array(
 
 // prepare the request to the delegator (Twishort)
 $params = array(
-  'api_key' => $twishort_key,
+  'api_key' => $twishort_api_key,
   'text' => $text,
   'title' => $title, // optional  
 );  
@@ -76,7 +76,7 @@ print_r($post);
 // Let's say you save response from Twitter to $tweet variable
 // Now send these Twitter ids back to Twishort
 $params = array(
-  'api_key' => $twishort_key,  
+  'api_key' => $twishort_api_key,  
   'id' => $post['id'],
   'tweet_id' => $tweet['id_str'],
   'reply_to_tweet_id' => $tweet['in_reply_to_status_id_str'], // optional
