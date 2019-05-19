@@ -1,5 +1,5 @@
 /*
- * This PHP example demonstrates a very simple use of the Twishort API
+ * This is an example of using Twishort API with PHP
  * More about Twishort API: https://twishort.com/api
  */
 
@@ -20,12 +20,12 @@ $twishort_update_ids_url = 'https://api.twishort.com/1.1/update_ids.json';
 $title = 'post title';
 $text = 'post text';
 
-require('tmhOAuth.php'); // we use tmhOAuth library in this example (https://github.com/themattharris/tmhOAuth)
+// we will use tmhOAuth library for OAuth requests in this example
+require('tmhOAuth.php');
 $tmhOAuth = new tmhOAuth($twitter_auth);
 
 // generate the verify crendentials header -- BUT DON'T SEND
 // we prevent the request because we're not the ones sending the verify_credentials request, the delegator is
-
 $tmhOAuth->config['prevent_request'] = true;
 $tmhOAuth->request('GET', $x_auth_service_provider);
 $tmhOAuth->config['prevent_request'] = false;
@@ -46,29 +46,29 @@ $params = array(
 // make the request, no auth, custom headers
 $code = $tmhOAuth->request('POST', $twishort_post_url, $params, false);
 
-if($code != 200) { // Error
+// error?
+if($code != 200) {
   print_r($tmhOAuth->response); // see $tmhOAuth->response['error'] for error description
   exit();
 }
 
-// success
+// success!
 $post = json_decode($tmhOAuth->response['response'], 1);
 print_r($post);
 /* 
-$post = Array
-(
-    [id] => cbbbc
-    [url] => http://twishort.com/cbbbc
-    [created_at] => Fri, 07 Dec 2012 14:27:28 +0000
-    [text_to_tweet] => text to post… http://twishort.com/cbbbc
-    [user] => Array
-        (
-            [id] => 835057694
-            [id_str] => 835057694
-            [screen_name] => test_user
-        )
-)
-*/
+ * Array (
+ *     [id] => cbbbc
+ *     [url] => http://twishort.com/cbbbc
+ *     [created_at] => Fri, 07 Dec 2012 14:27:28 +0000
+ *     [text_to_tweet] => text to post… http://twishort.com/cbbbc
+ *     [user] => Array
+ *         (
+ *             [id] => 835057694
+ *             [id_str] => 835057694
+ *             [screen_name] => test_user
+ *         )
+ * )
+ */
 
 // OPTIONAL BUT HIGHLY RECOMMENDED PART
 // Here you posting text from $post['text_to_tweet'] to Twitter by yourself
