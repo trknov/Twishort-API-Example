@@ -12,7 +12,7 @@ $twitter_auth = array(
 );
 $twishort_key = 'your Twishort API key'; // get your API key at http://twishort.com/api
 
-$x_auth_service_provider = 'https://api.twitter.com/1.1/account/verify_credentials.json';
+$twitter_verify_creds_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
 $twishort_post_url = 'https://api.twishort.com/1.1/post.json';
 $twishort_update_ids_url = 'https://api.twishort.com/1.1/update_ids.json';
 // End settings
@@ -27,12 +27,12 @@ $tmhOAuth = new tmhOAuth($twitter_auth);
 // generate the verify crendentials header -- BUT DON'T SEND
 // we prevent the request because we're not the ones sending the verify_credentials request, the delegator is
 $tmhOAuth->config['prevent_request'] = true;
-$tmhOAuth->request('GET', $x_auth_service_provider);
+$tmhOAuth->request('GET', $twitter_verify_creds_url);
 $tmhOAuth->config['prevent_request'] = false;
 
 // create the headers for the echo
 $tmhOAuth->headers = array(
-  'X-Auth-Service-Provider'            => $x_auth_service_provider,
+  'X-Auth-Service-Provider'            => $twitter_verify_creds_url,
   'X-Verify-Credentials-Authorization' => $tmhOAuth->auth_header,
 );
 
