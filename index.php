@@ -10,8 +10,9 @@ $twitter_auth = array(
   'user_token'      => 'user_token of authenticated user',
   'user_secret'     => 'user_secret of authenticated user'
 );
-$twishort_api_key = 'your Twishort API key'; // get your API key at http://twishort.com/api
-
+// Twishort API Key. Get yours at http://twishort.com/api
+$twishort_api_key = 'your Twishort API key';
+/// URLs
 $twitter_verify_creds_url = 'https://api.twitter.com/1.1/account/verify_credentials.json';
 $twishort_post_url = 'https://api.twishort.com/1.1/post.json';
 $twishort_update_ids_url = 'https://api.twishort.com/1.1/update_ids.json';
