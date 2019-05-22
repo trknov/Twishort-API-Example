@@ -1,5 +1,5 @@
 /*
- * This is an example of using Twishort API with PHP
+ * Twishort API example on PHP
  * More about Twishort API: https://twishort.com/api
  */
 
