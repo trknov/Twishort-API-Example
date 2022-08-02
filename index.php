@@ -1,3 +1,4 @@
+<?php
 /*
  * Twishort API example on PHP
  * More about Twishort API: https://twishort.com/api
